@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div this is a message from node js #{message}
+  p
+  for data in json
+   div #{JSON.stringify(data)}
