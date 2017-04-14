@@ -1,5 +1,4 @@
-var path = require('path');
-var employeeDao = require(path.join(global.dirname, 'dao/employeeDao.js'));
+var employeeDao = require(global.path.join(global.dirname, 'dao/employeeDao.js'));
 
 /* GET users listing. */
 module.exports.controller = function(app){

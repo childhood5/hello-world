@@ -14,6 +14,7 @@ var database = require('./database/config_database.json');
 //declare variable global
 global.dirname = __dirname;
 global.database = database;
+global.path = path;
 
 
 //config database
@@ -75,6 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
+  err.myError = 'Add my error';
   next(err);
 });
 
