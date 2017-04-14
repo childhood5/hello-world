@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	</head>
+	<body ng-app="sample">
+		<div ng-controller = "HelloController" >
+			<h2>Welcome {{helloTo.title}} and {{helloTo.body}} to the world of Tutorialspoint!</h2>
+		</div>
+		<div> 
+			<p>Enter name: <input type="text" ng-model="name"/></p>
+			<p>Hello my app: <span ng-bind="name"></span></p>
+			<p>{{'This is a sample:' + name}}</p>
+		</div>
+		<div>
+			Please input something: <input type="text" ng-model="input"/> <br/>
+			{{input}}
+		</div>
+	
+	</body>
+	<script>
+	   angular.module("sample", []).controller("HelloController", function($scope) {
+			$scope.helloTo = {};
+			$scope.helloTo.title = "AngularJS";
+			$scope.helloTo.body = "my application"
+	   });	   
+	</script>
+</html>

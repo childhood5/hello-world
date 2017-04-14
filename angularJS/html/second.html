@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	</head>
+	<body ng-app="students">
+		<ul ng-controller="studentController">
+			<li ng-repeat="obj in listStudent">
+				{{obj.email}}
+			</li>
+		</ul>
+		<div>
+			<input type="checkbox" ng-model="disableButton"/>
+			<button ng-disabled="disableButton">Click me</button>
+		</div>
+		<div>
+			<input type="checkbox" ng-model="showButton"/>
+			<button ng-show="showButton">Click me</button>
+		</div>
+	
+	
+	
+	</body>
+	<script> 
+	   angular.module("students", []).controller("studentController", function($scope){
+			$scope.listStudent = [{email : 'hood@gmail.com'}, {email : 'child@gmail.com'}]
+	   });
+	</script>
+</html>
