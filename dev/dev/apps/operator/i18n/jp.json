@@ -1,0 +1,18 @@
+{
+	"user-birthday-year": "年",
+	"terms": " 利用規約",
+	"mailto": "  お問い合わせ",
+	"warning": "warning",
+	"policy": "policy",
+	"copyright": "copyright",
+	"admin_welcome": "admin_welcome",
+	"user_login_invalid_password": "無効なパスワード",
+	"operator_welcome": "ようこそショコラへ!!",
+	"operator_id": "ユーザーID",
+	"operator_password": "パスワード",
+	"operator_login": "ログイン",
+	"user_login_over_times": "アカウントがロックされました。5分後に再度ログインしてください。",
+	"err-operator-email-invalid": "メールアドレスの形式を確認してください",
+	"err-operator-email-required": "メールアドレスを入力してください",
+	"err-operator-password-required": "パスワードを入力してください"
+}

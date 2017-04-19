@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  body
+    nav.navbar.navbar-default.navbar-static-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          |  
+          a.navbar-brand(href='/') Invoice App
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/api/products') Products
+            li
+              a(href='/api/customers') Customers
+            li
+              a(href='/') Invoices
+    .container
+     h2 List of existing invoices :
+     form(action='/api/invoices/1/items', method='get')
+      table
+        tr
+          th customer_id
+          th discount
+          th total
+        for invoice in invoices
+         tr
+          td
+             a(href='/api/customers/') #{invoice.customer_id}
+          td #{invoice.discount}
+          td #{invoice.total}
+      button#create(type='submit', name='create', style='margin-top: 30px') New invoice
+    script(type='text/javascript', src='/js/lib/jquery/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/bootstrap/js/bootstrap.min.js')

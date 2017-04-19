@@ -1,0 +1,33 @@
+div.page-container{
+  clear: both;
+  margin: 0px 0px;
+  border-top: 2px solid #ccc;
+  padding-top: 10px;
+}
+div.page-container > .left{
+  float: left;
+  min-width: 250px;
+  width: 30%;
+}
+div.page-container > .right{
+  float: right;
+  min-width: 350px;
+  width: 65%;
+  text-align: right;
+}
+div.page-container a{
+  font-size: 11px;
+  color: #00f;
+  padding: 0px;
+  margin: 5px 10px;
+  display: inline-block;
+}
+div.page-container a:hover{
+  text-decoration: underline;
+}
+div.page-container select{
+  border-bottom: 2px solid #00f;
+  width: 60px;
+  padding: 3px 0px;
+  text-align: center;
+}

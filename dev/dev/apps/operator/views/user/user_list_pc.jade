@@ -1,0 +1,136 @@
+extends ../layout_pc
+block header
+  nav(class="navbar navbar-default")
+    div(class="container-fluid")
+      div(class="navbar-header")
+        button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+          span(class="sr-only">Toggle navigation)
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(class="navbar-brand" href="#") Dashboard
+
+      div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+        ul(class="nav navbar-nav")
+          li 
+            a(href="#") User
+          li
+            a(href="#") Worker
+          li
+            a(href="#") Operator user
+          li
+            a(href="#") Configuration
+        ul(class="nav navbar-nav navbar-right")
+          li 
+            a Logged in:
+          li 
+            a(href="#") 
+              span administrator |
+          li 
+            a(href="#") 
+              span Logout
+
+block content
+  ol.breadcrumb
+    li
+      a(href='#') House Keeping
+    li
+      a(href='#') users
+    li.active list
+  div(class="col-md-12 panel alert alert-default")
+    form(class="navbar-form navbar-left" role="search")
+      select(class="form-control" name="status")
+        option(disabled="true" selected) ...[status]...
+        option Request
+      | Male: 
+      input(type="checkbox" name="sex")
+      | Female: 
+      input(type="checkbox" name="sex")
+      input(class="form-control" type="date" name="requestdate")
+      input(class="form-control" type="time" name="requesttime")
+      input(type="text" class="form-control" id="userPopoverButton" data-placement="bottom" data-toggle="popover" title="Keyword" placeholder="Keyword")
+      input(class="btn btn-default" value="Search" type="button")
+
+  div(class="hide" id="userPopover")
+    table(class="filterList")
+      tr
+        td
+          input(type="checkbox" value="username" name="keyword" onclick="getKeyword(this)") 
+          | username
+        td
+          input(type="checkbox" value="email" name="keyword" onclick="getKeyword(this)")
+          | email
+      tr
+        td
+          input(type="checkbox" value="id" name="keyword" onclick="getKeyword(this)")
+          | id
+        td
+          input(type="checkbox" value="address" name="keyword" onclick="getKeyword(this)")
+          | address
+      tr
+        td
+          input(type="checkbox" value="phone" name="keyword" onclick="getKeyword(this)")
+          | phone
+        td
+          input(type="checkbox" value="postcode" name="keyword" onclick="getKeyword(this)")
+          | postcode
+
+  a(class="btn btn-primary")
+    span(class="glyphicon glyphicon-plus") Add
+  a(class="btn btn-danger")
+    span(class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal") Delete
+  a(class="btn btn-default")
+    span(class="glyphicon glyphicon-import") Import
+  hr
+  div(class="scroll-y panel")
+    table(id="userTable" class="table table-striped table-bordered test" cellspacing="0" width="100%")
+      thead
+        tr
+          th
+            input(type="checkbox" disabled="true")
+          th Name
+          th Email
+          th Phone
+          th Sex
+          th Status
+          th Request date & time
+          th Usage count
+      tbody
+        tr
+          td
+            input(type="checkbox" name="selectedUser")
+          td Phu1
+          td le.phu@inte.co.jp
+          td 0123456789
+          td Male
+          td Request
+          td "2015/01/01 10:00:00"
+          td 10
+  hr
+  a(class="btn btn-primary")
+    span(class="glyphicon glyphicon-plus") Add 
+  a(class="btn btn-danger")
+    span(class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal") Delete 
+  a(class="btn btn-default")
+    span(class="glyphicon glyphicon-import") Import 
+
+  div(class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true")
+    div(class="modal-dialog modal-sm")
+      div(class="modal-content")
+        div(class="modal-header alert-danger")
+          p Warning!
+        div
+          p(class="col-md-11 col-md-offset-1") Are you sure to delete this user ?
+          div(class="col-md-offset-7")
+            a(type="button" class="btn btn-default") Yes
+            a(type="button" class="btn btn-default" data-dismiss="modal") No
+
+block footer
+  footer
+    div(class="container",role="footer")
+      div(class="extra")
+        div(class="hk-center")
+          a(href="https://prottapp.com/ja/privacy.html",target="blank") プライバシーポリシー
+          a(href="https://prottapp.com/ja/terms.html",target="blank") 利用規約
+          a(href="mailto:info@prottapp.com",target="blank") お問い合わせ
+        div(class="hk-center") @2015 ショコラ

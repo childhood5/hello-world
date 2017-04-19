@@ -1,0 +1,24 @@
+extends ../layout_staff
+block header
+  script(type='text/javascript', src='/content/js/worker_controller.js')
+block footer
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg box-login leftside-color-orange" ng-controller="WorkerController") 
+    form(id="flogin" method="post" novalidate)
+      div(class="form-group")
+        div(class="hk-center")
+          h5(class="orange") #{__('worker_login_title_page')}
+        input(type="tel", class="form-control bottom-border hk-check",  hk-required="required" hk-phone-number="required" hk-error-phone-number="#{__('err-worker-phone-invalid')}" hk-error-required="#{__('err-worker-phone-required')}" placeholder="#{__('telConfirmInformation')}", required="required", name="tel", hk-label="float" ng-model="worker.tel")
+      div(class="form-group")
+        input(type="password", class="form-control bottom-border hk-check", hk-required="required" hk-error-required="#{__('err-worker-password-required')}" placeholder="#{__('passConfirmInformation')}", required="required", name="login_password", hk-label="float"  ng-model="worker.login_password")
+      br
+      div(class="form-group")
+        button(type="button", id="hklogin" class="btn btn-lg btn-primary" hk-ng-click="ngclick" hk-form="checked" hk-ref="flogin") #{__('loginConfirmInformation')}
+        button(type="hidden" id="ngclick" ng-click="login()" style="display:none")
+      p
+        br
+        a(href="/staff/forgot-password") #{__('forgottenConfirmInformation')}
+      

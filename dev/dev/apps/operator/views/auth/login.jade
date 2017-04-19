@@ -1,0 +1,22 @@
+extends ../layout
+block header
+  script(type='text/javascript' src='content/js/controller_operator.js')
+
+block content
+  div(class="container", role="main")
+    div(class="page-header")
+      img(src="/content/css/imgs/logo.png")
+    div(class="hk-bg box-login leftside-color-orange" ng-controller="operator_login") 
+      form(id="flogin" method="post" novalidate)
+        div(class="form-group")
+          input(type="email", class="form-control bottom-border hk-check"  hk-required="required" hk-email="required" hk-error-email="#{__('err-operator-email-invalid')}" hk-error-required="#{__('err-operator-email-required')}" placeholder="#{__('operator_id')}", required="required", name="email_address", hk-label="float" ng-model="user.email_address")
+        div(class="form-group")
+          input(type="password", class="form-control bottom-border hk-check"  hk-required="required" hk-error-required="#{__('err-operator-password-required')}" placeholder="#{__('operator_password')}", required="required", name="login_password", hk-label="float"  ng-model="user.login_password")
+        br
+        div(class="form-group")
+          button(type="button", id="hklogin" class="btn btn-lg btn-primary" hk-ng-click="ngclick" hk-form="checked" hk-ref="flogin") #{__('operator_login')}
+          button(type="hidden" id="ngclick" ng-click="login()" style="display:none")
+        
+block footer
+  br
+  div.hk-center @2015 ショコラ

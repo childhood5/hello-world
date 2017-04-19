@@ -1,0 +1,91 @@
+extends ../layout_pc
+block header
+   script(type='text/javascript', src='/operator/content/js/staff_information_list_controller.js')
+
+block content
+  div(ng-controller="StaffListController")
+    ol(class="breadcrumb")
+      li
+        a(href='#') House Keeping
+      li
+        a(href='#') users
+      li(class="active") list
+    div(class="col-md-12 panel alert alert-default")
+      form(class="navbar-form navbar-left" role="search")
+        span Female:
+          if json && json.female == 'true'
+            input(type='checkbox', name='sex', id="female", checked)
+          else 
+            input(type='checkbox', name='sex', id="female")
+        span Male:
+          if json && json.male == 'true'
+            input(type='checkbox', name='sex', id="male", checked)
+          else
+            input(type='checkbox', name='sex', id="male")
+        select(class="selectpicker form-control btn btn-default dropdown-toggle" type="button" name="status" id="station_name")
+          option(value="", selected) ...[station]...
+          for ele in lsStations
+            if json && json.station_name == ele.station_name
+              option(value='#{ele.station_name}', selected) #{ele.station_name}
+            else
+              option(value='#{ele.station_name}' ) #{ele.station_name}
+        span
+          if json && json.keyword !== ''
+            input#popoverButton.form-control(type='text', data-placement='bottom', data-toggle='popover', title='Keyword', placeholder='Keyword', value="#{json.keyword}" , name="keyword")
+          else
+            input#popoverButton.form-control(type='text', data-placement='bottom', data-toggle='popover', title='Keyword', placeholder='Keyword', name="keyword")
+          #popover
+            table.filterList
+              tr
+                td
+                  if json && json.first_name == 'true'
+                    input(type='checkbox', value='first_name', onchange='getKeyword(this)' id="first_name", checked)
+                  else
+                    input(type='checkbox', value='first_name', onchange='getKeyword(this)' id="first_name")
+                  | username
+                td
+                  if json && json.email_address == 'true'
+                    input(type='checkbox', value='email_address', onchange='getKeyword(this)' id="email_address", checked)
+                  else
+                    input(type='checkbox', value='email_address', onchange='getKeyword(this)' id="email_address")
+                  | email
+              tr
+                td
+                  if json && json.tel == 'true'
+                    input(type='checkbox', value='tel', onchange='getKeyword(this)' id="tel", checked)
+                  else
+                    input(type='checkbox', value='tel', onchange='getKeyword(this)' id="tel")
+                  | phone
+                td
+                  if json && json.zip_code == 'true'
+                    input(type='checkbox', value='zip_code', onchange='getKeyword(this)' id="zip_code", checked)
+                  else
+                    input(type='checkbox', value='zip_code', onchange='getKeyword(this)' id="zip_code")
+                  | postcode
+              tr
+                td
+                  if json && json.address1 == 'true'
+                    input(type='checkbox', value='address1', onchange='getKeyword(this)' id="address1", checked)
+                  else
+                    input(type='checkbox', value='address1', onchange='getKeyword(this)' id="address1")
+                  | address
+                td
+                  a(href="", id="popoverClose", class="btn btn-xs glyphicon glyphicon-remove") Close
+          input(type="hidden", id="selectedColumns", name="columns")
+        input(class="btn btn-default" value="Filter" type="button" id="filter")
+    a(class="btn btn-danger")
+      span(class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#deleteModal" id="deleteRow") Delete
+    a(class="btn btn-default")
+      span(class="glyphicon glyphicon-export", id="export" ) Export CSV
+    hr
+    input(type="hidden" value="#{page}" name="page" id="jsgrid-page")
+    input(type="hidden" value="#{cache}" name="cache" id="jsgrid-cache")
+    input(type="hidden" value="#{limit}" name="limit" id="jsgrid-limit")
+    div(id="jgrid"  hk-item-per-page="#{item_per_page}" ref-pagination="pagination" ref-page="jsgrid-page" ref-cache="jsgrid-cache" ref-limit="jsgrid-limit" hk-width="100%" hk-height="350")
+    div(id="pagination")
+    hr
+    a(class="btn btn-danger")
+      span(class="glyphicon glyphicon-remove" data- toggle="modal" data-target="#deleteModal", id="deleteSecond") Delete
+    a(class="btn btn-default")
+      span(class="glyphicon glyphicon-import", id="import") Import CSV
+

@@ -39,7 +39,7 @@ global.db = {
 fs.readdirSync(path.join(__dirname, 'dto')).forEach(function(file){
 	if(file.substr(-3) == '.js'){
 		var dto = require(path.join(__dirname,'dto',file));
-		mORM.loadCollection(dto.employeeModel);
+		mORM.loadCollection(dto.modelDto);
 	}
 });
 
@@ -67,7 +67,7 @@ app.set('view engine', 'pug');
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

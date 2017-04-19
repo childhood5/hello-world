@@ -1,0 +1,168 @@
+extends ../layout_pc
+block header
+  script(type='text/javascript', src='/operator/content/js/controller_userlist.js')
+
+block content
+  div(ng-controller="userlist as ul")
+    .col-md-12.panel.alert.alert-default
+      form.navbar-form.navbar-left(role='search' id="userFilter")
+        span Birthday:
+        span
+          input.form-control(type='date', name='birthday', value="#{ userListFilter !== undefined ? userListFilter.birthday : '' }")
+          | &nbsp
+        span
+          if userListFilter !== undefined && userListFilter.sex === 'FEM'
+            input(type='checkbox', name='female', checked)
+            |  Female: 
+            |  &nbsp
+          if (userListFilter !== undefined && userListFilter.sex !== 'FEM') || userListFilter === undefined
+            input(type='checkbox', name='female')
+            |  Female: 
+            |  &nbsp
+        span
+          if userListFilter !== undefined && userListFilter.sex === 'MAL'
+            input(type='checkbox', name='male', checked)
+            |  Male:
+            |  &nbsp
+          if (userListFilter !== undefined && userListFilter.sex !== 'MAL') || userListFilter === undefined
+            input(type='checkbox', name='male')
+            |  Male:
+            |  &nbsp
+        span
+          input#popoverButton.form-control(type='text', data-placement='bottom', data-toggle='popover', title='Keyword', placeholder='Keyword', name="keyword", value="#{ userListFilter !== undefined && userListFilter.keyword !== undefined ? userListFilter.keyword : ''}")
+          |  &nbsp
+          // filter
+          #popover
+            table.filterList
+              tr
+                td
+                  if (userListFilter !== undefined && userListFilter.columns.indexOf('first_name') >= 0)
+                    input(type='checkbox', checked, name="selectedColumn", value='first_name')
+                    | username
+                  else
+                    input(type='checkbox', name="selectedColumn", value='first_name')
+                    | username
+                td
+                  if userListFilter !== undefined && userListFilter.columns.indexOf('email_address') >= 0
+                    input(type='checkbox', checked, name="selectedColumn", value='email_address')
+                    | email
+                  else
+                    input(type='checkbox', name="selectedColumn", value='email_address')
+                    | email
+              tr
+                td
+                  if userListFilter !== undefined && userListFilter.columns.indexOf('tel') >= 0
+                    input(type='checkbox', checked, name="selectedColumn", value='tel')
+                    | phone
+                  else
+                    input(type='checkbox', name="selectedColumn", value='tel')
+                    | phone
+                td
+                  if userListFilter !== undefined && userListFilter.columns.indexOf('zip_code') >= 0
+                    input(type='checkbox', checked, name="selectedColumn", value='zip_code')
+                    | postcode
+                  else
+                    input(type='checkbox', name="selectedColumn", value='zip_code')
+                    | postcode
+              tr
+                td
+                  if userListFilter !== undefined && userListFilter.columns.indexOf('address1') >= 0
+                    input(type='checkbox', checked, name="selectedColumn", value='address1')
+                    | address
+                  else
+                    input(type='checkbox', name="selectedColumn", value='address1')
+                    | address
+                td
+                  a(href="", id="popoverClose", class="btn btn-xs glyphicon glyphicon-remove") Close
+        span
+          input.btn.btn-default(value='Search', type='button', onclick="search(1, 10)")
+
+    // a.btn.btn-primary
+    //  span.glyphicon.glyphicon-plus Add
+    span &nbsp
+    a.btn.btn-danger(data-toggle='modal', data-target='#deleteModal')
+      span.glyphicon.glyphicon-remove Delete
+    span &nbsp
+    a.btn.btn-default(data-toggle='modal', data-target='#exportModal')
+      span.glyphicon.glyphicon-export Export
+    hr
+    .col-md-2.input-sm
+      span Page number:
+    .col-md-1
+      input.input-sm.form-control(type="text" id="pageNumber" value="1" onblur="pageNumberBlur()") 
+    .col-md-2.input-sm
+      span of {{totalRecords === undefined? '"No record"' : 'totalRecords'}}
+    br
+    br
+    table#usertable(class="table table-bordered table-striped")
+      thead
+        tr
+          th
+            | All 
+            input(type="checkbox" name="userlistCheckAll")
+          th Action
+          th Name
+          th.email_row Email
+          th Phone number
+          th Sex
+          th Station name
+          th Usage count
+      tbody
+    
+    .col-md-2.input-sm
+      label Record per page:
+    .col-md-1
+        select.form-control(id="rpp")
+          option 10
+          option 25
+          option 50
+          option 100
+
+    .col-md-offset-9
+        td
+          input.btn.btn-default(type="button" onclick="pageNext()" value="<<") 
+          | &nbsp
+          input.btn.btn-default(type="button" onclick="pageNext()" value="<")
+          | &nbsp
+          input.btn.btn-default(type="button" onclick="pageNext()" value=">") 
+          | &nbsp
+          input.btn.btn-default(type="button" onclick="pageNext()" value=">>")
+
+    hr
+
+    // a.btn.btn-primary
+    //  span.glyphicon.glyphicon-plus Add
+    span &nbsp
+    a.btn.btn-danger(data-toggle='modal', data-target='#deleteModal')
+      span.glyphicon.glyphicon-remove Delete
+    span &nbsp
+    a.btn.btn-default(data-toggle='modal', data-target='#exportModal')
+      span.glyphicon.glyphicon-export Export
+
+    #deleteModal.modal.fade
+      .modal-dialog.modal-sm
+        .modal-content
+          .modal-header.alert-danger
+            p Warning!
+          div
+            p.col-md-11.col-md-offset-1 Are you sure to delete this user ?
+            .col-md-offset-7
+              button.btn.btn-default(type='button' onclick="deleteYes()") Yes
+              &nbsp
+              button.btn.btn-default(type='button', data-dismiss='modal', id="close") No
+          hr
+    // /delete-modal
+    #exportModal.modal.fade
+      .modal-dialog.modal-sm
+        .modal-content
+          .modal-header.alert-danger
+            p Warning!
+          div
+            p.col-md-11.col-md-offset-1 Are you sure to export the current user list ?
+            .col-md-offset-7
+              button.btn.btn-default(type='button' onclick="csvExport()") Yes
+              &nbsp
+              button.btn.btn-default(type='button', data-dismiss='modal', id="close") No
+          hr
+    // /delete-modal
+  // /pc

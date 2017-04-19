@@ -1,0 +1,112 @@
+extends ../layout
+block header
+  script(type='text/javascript', src='/content/js/user_controller.js')
+  link(rel='stylesheet', href='/content/css/step_bar_compiled.css')
+block footer
+
+block content 
+  div(class="modal fade"  ng-controller="UserImageController")
+    div(class="modal-dialog")
+      div(class="modal-content")
+        div(class="modal-header")
+          button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+          h4(class="modal-title" id="myModalLabel") #{__('upload-profile')}
+        div(class="modal-body")
+            input(type="file" id="profile-image" name="profile_url")
+        div(class="modal-footer")
+          button(type="button" class="btn btn-default" data-dismiss="modal") #{__('action-canel')}
+          button(type="button" class="btn btn-primary") #{__('action-upload')}
+          
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg box-middle leftside-color-orange" ng-controller="UserController") 
+    form(id="fupdate" method="post" novalidate)
+      
+      div(class="hk-center")
+        h5(class="hk-bold hk-ex120") 
+          |#{__('user_update_info_h1')}
+          br
+          |#{__('user_update_info_h1_1')}
+        br    
+      div(class="input-field  hk-center" style="display: none")
+        img( class="hk-upload" id="profile-img" hk-ref="profile-image" src="/content/css/imgs/profile-150.png")
+        input(type="hidden" class="" value="" id="profile_image_url")
+      div(class="input-field")
+        p(class="orange") #{__('user_update_info_lb_01')}
+        input( type="text" placeholder="#{__('user-zip_code')}" hk-required="required" hk-error-required="#{__('error-user-zip_code-required')}" class="form-control bottom-border hk-check" required="required" hk-label="float" ng-model="user.zip_code" id="zip_code")
+        div(class="hk-center orange hk-ex90 mt10 ml20") #{__('user_update_info_lb_02')}
+      div(class="input-field  hk-center")
+        select(class="form-control bottom-border hk-check hk-source"  hk-required="required" hk-url="/ajax/get-prefectures" placeholder="#{__('user-prefecture_id')}" hk-error-required="#{__('error-user-prefecture_id-required')}" id="prefecture_id" ng-model="user.prefecture_id")
+      div(class="input-field  hk-center")
+        input( type="text" placeholder="#{__('user-address1')}"  hk-required="required" hk-error-required="#{__('error-user-address1-required')}" class="form-control bottom-border hk-check" required="required" hk-label="float" ng-model="user.address1" id="address1")
+      div(class="input-field  hk-center")
+        input( type="text" placeholder="#{__('user-address2')}"  class="form-control bottom-border hk-check" hk-error-required="#{__('error-user-address2-required')}"  required="required"  hk-required="required" hk-label="float" ng-model="user.address2" id="address2")
+        div(class="hk-center orange hk-ex90 mt10 ml20") #{__('user_update_info_lb_03')}
+      div(class="input-field  hk-center")
+        input( type="text" placeholder="#{__('user-address3')}" class="form-control bottom-border" required="required" hk-label="float" ng-model="user.address3" id="address3")
+      br
+      div(class="input-field ")
+        p(class="orange") #{__('user_update_info_lb_04')}
+        select(class="form-control bottom-border hk-check hk-source"  placeholder="#{__('user-house_id')}"  hk-required="required" hk-url="/ajax/get-houses"  hk-error-required="#{__('error-user-house_id-required')}" id="house_id" ng-model="user.house_id")
+      br
+      div(class="input-field  hk-center")
+        p(class="orange") #{__('user_update_info_lb_05')}
+        input(type="hidden" id="building_type" value="" class="hk-check" hk-required="required" hk-error-required="#{__('error-user-buiding_type-required')}")
+        button(type="button", class="btn hk-select-box", hk-ref="building_type", hk-value="1" hk-group="building") #{__('building-type-1')}
+        button(type="button", class="btn hk-select-box", hk-ref="building_type" hk-value="2" hk-group="building") #{__('building-type-2')}
+        br
+        br
+        button(type="button", class="btn hk-select-box", hk-ref="building_type" hk-value="3" hk-group="building") #{__('building-type-3')}
+        button(type="button", class="btn hk-select-box", hk-ref="building_type" hk-value="4" hk-group="building") #{__('building-type-4')}
+      div(class="input-field  hk-center")
+        p(class="orange") #{__('user_update_info_lb_06')}
+        input(type="hidden" id="is_auto_lock" value="" class="hk-check" hk-required="required" hk-error-required="#{__('error-user-auto_lock-required')}")
+        button(type="button", class="btn hk-select-box", hk-ref="is_auto_lock", hk-group="autolock" hk-value="1") #{__('auto-lock-1-have')}
+        button(type="button", class="btn hk-select-box", hk-ref="is_auto_lock", hk-group="autolock" hk-value="0") #{__('auto-lock-0-without')}
+      br
+      div(class="input-field ")
+        p(class="orange") #{__('user_update_info_lb_07')}
+        input( type="text" placeholder="#{__('user-station')}" hk-error-required="#{__('error-user-station_name-required')}" hk-source="/ajax/get-stations" class="form-control bottom-border hk-autocomplete hk-check" hk-required="required" hk-label="float" ng-model="user.station_name" id="station_name")
+        div(class="hk-center orange hk-ex90 mt10 ml20") #{__('user_update_info_lb_08')}
+      div(class="input-field  hk-center")
+        input( type="text" placeholder="#{__('user-bus-stop')}" class="form-control bottom-border" required="required" hk-label="float" ng-model="user.bus_stop" id="bus_stop")
+      br
+      
+      div(class="input-field hk-center")        
+        p(class="orange") #{__('user_update_info_lb_09')}
+        select(hk-float="left" hk-width="80px" class="hk-year form-control bottom-border hk-check" hk-required="required" hk-error-required="#{__('error-user-birthday_year-required')}" id="birthday-year" hk-ref="birthday-day" hk-min-year="#{min_year}" hk-max-year="#{max_year}" hk-selected="#{year_selected}" placeholder="#{__('user-birthday-year')}")
+        span(class="hk-none")
+        select(hk-float="left" hk-width="60px" class="hk-month form-control bottom-border hk-check" hk-required="required" hk-error-required="#{__('error-user-birthday_month-required')}" id="birthday-month" hk-ref="birthday-day" placeholder="#{__('user-birthday-month')}")
+        span(class="hk-none")
+        select(hk-float="left" hk-width="60px" class="hk-day form-control bottom-border hk-check" hk-required="required" hk-error-required="#{__('error-user-birthday_day-required')}" id="birthday-day" hk-year="birthday-year" hk-month="birthday-month" placeholder="#{__('user-birthday-day')}")
+        div(class="hk-clr")
+      div(class="input-field  hk-center")
+        p(class="orange") #{__('user_update_info_lb_10')}
+        input(type="hidden" id="sex" value="" class="hk-check" hk-required="required" hk-error-required="#{__('error-user-sex-required')}")
+        button(type="button", class="btn hk-select-box", hk-ref="sex", hk-value="MAL" hk-group="sex") #{__('user-sex-male')}
+        button(type="button", class="btn hk-select-box", hk-ref="sex" hk-value="FEM" hk-group="sex") #{__('user-sex-female')}
+      br
+      div(class="input-field  hk-center")
+        for f,n in families
+          - var at = (n==0?'hk-check':'')
+          input(type="hidden" id="families-#{f.id}" value="" class="families" name="families")
+        p(class="orange") #{__('user_update_info_lb_11')}
+        div(class="hk-center orange hk-ex90 mt10 ml20") #{__('user_update_info_lb_12')}
+        for f,n in families
+          button(type="button", class="btn hk-select-box" , hk-ref="families-#{f.id}" hk-value="#{f.id}") #{f.name}
+          if n%2 
+            br
+            br
+        
+      div(class="input-field  hk-center")
+        p(class="orange") #{__('user_update_info_lb_13')}
+        input(type="hidden" id="is_exist_pet" value="" class="hk-check" hk-required="required" hk-error-required="#{__('error-user-pet-required')}")
+        button(type="button", class="btn hk-select-box", hk-ref="is_exist_pet" hk-group="pet" hk-value="1") #{__('pet-1-have')}
+        button(type="button", class="btn hk-select-box", hk-ref="is_exist_pet" hk-group="pet" hk-value="0") #{__('pet-0-without')}
+      br
+      div(class="input-field  hk-center")
+        textarea(class="form-control hk-comment" placeholder="#{__('user-demain')}"  id="demain" ng-model="user.demain")
+      div(class="input-field  hk-center")
+        button( type="button" class="btn btn-lg btn-primary" id="hkupdateinfo" hk-ng-click="ngclick" hk-form="checked" hk-ref="fupdate") #{__('action-update')}
+        button(type="hidden" id="ngclick" ng-click="updateInfo()" style="display:none")
+        

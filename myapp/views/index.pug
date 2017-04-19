@@ -4,3 +4,14 @@ block content
   h1= title
   p Welcome to #{title}
   div this is a message from node js #{message}
+  form(action="/student/child", method="get")
+   |  Name: 
+   span #{firstName}
+   br
+   |  Pass: 
+   span #{password}
+   br
+   |  Email: 
+   span #{email}
+   br
+   button#submit Submit

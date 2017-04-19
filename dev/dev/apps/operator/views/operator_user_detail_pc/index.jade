@@ -1,0 +1,161 @@
+extends ../layout_pc
+block header
+  script(type='text/javascript', src='/operator/content/js/controller_userdetail.js')
+
+block content
+    div(ng-controller="userdetail")
+      form(action="/operator/user/update", method="POST")
+        table.table.borderless
+          tr
+            td(rowspan='7')
+              img(src='/operator/content/css/images/user.png', width='250px', height='250px')
+            td First name:
+            td
+              input.form-control(type='text', name='first_name', value="#{ user.first_name === undefined ? '' : user.first_name }")
+            td Nick name:
+            td
+              input.form-control(type='text', name='nickname', value="#{ user.nickname === undefined ? '' : user.nickname }")
+          tr
+            td Last name:
+            td
+              input.form-control(type='text', name='last_name', value="#{ user.last_name === undefined ? '' : user.last_name }")
+            td Sex:
+              td
+                if user.sex === 'MAL'
+                  input(type='radio', name='sex', value='MAL', checked)
+                  | Male &nbsp
+                else
+                  input(type='radio', name='sex', value='MAL')
+                  | Male &nbsp
+                if user.sex === 'FEM'
+                  input(type='radio', name='sex', value='FEM', checked)
+                  | Female &nbsp
+                else
+                  input(type='radio', name='sex', value='FEM')
+                  | Female &nbsp
+                if user.sex === 'UNKNOWN'
+                  input(type='radio', name='sex', value='UNKNOWN', checked)
+                  | Unknown &nbsp
+                else 
+                  input(type='radio', name='sex', value='UNKNOWN')
+                  | Unknown &nbsp
+          tr
+            td First name kana:
+            td
+              input.form-control(type='text', name='first_name_kana', value="#{ user.first_name_kana === undefined ? '' : user.first_name_kana }")
+            td Zip code:
+            td
+              input.form-control(type='text', name='zip_code', value="#{ user.zip_code === undefined ? '' : user.zip_code }")
+          tr
+            td Last name kana:
+            td
+              input.form-control(type='text', name='last_name_kana', value="#{ user.last_name_kana === undefined ? '' : user.last_name_kana }")
+            td Birthday:
+            td
+              input.form-control(type='date', name='birthday', value="#{ user.birthday.toLocaleDateString() }")
+          tr
+            td Phone number:
+            td
+              input.form-control(type='tel', name='tel', value="#{ user.tel === undefined ? '' : user.tel }")
+          tr
+            td Email:
+            td(colspan='2')
+              input.form-control(type='email', name='email_address', value="#{ user.email_address === undefined ? '' : user.email_address }")
+          tr
+            td
+            td
+              if user.is_exist_pet === 1
+                input(type='checkbox', name='is_exist_pet', value="true", checked)
+                | have pet ?
+              else 
+                input(type='checkbox', name='is_exist_pet', value='true')
+                | have pet ?
+          tr
+            td Room type:
+            td
+              select.form-control(name='house_id')
+                option(selected='', disabled='true') Select room type
+                for house in houses
+                  if user.house_id === house.id
+                    option(selected, value=house.id) #{ house.name }
+                  else
+                    option(value=house.id) #{ house.name }
+
+            td Room size:
+            td
+              select.form-control(name='size_id')
+                option(selected='', disabled='true') Select room size
+                for size in roomsizes
+                  if user.size_id === size.id
+                    option(selected, value=size.id) #{ size.size }
+                  else
+                    option(value=size.id) #{ size.size }
+          tr
+            td City:
+            td
+              select.form-control(name='prefecture_id')
+                option(selected='', disabled='true') Select prefecture
+                for prefecture in prefectures
+                  if user.prefecture_id === prefecture.id
+                    option(selected, value=prefecture.id) #{ prefecture.name }
+                  else
+                    option(value=prefecture.id) #{ prefecture.name }
+            td Building type:
+            td
+              select.form-control(name='building_type')
+                option(selected='', disabled='true') Select building type
+                for building in buildings
+                  if user.building_type.toString() === building.value.toString()
+                    option(selected, value=building.value) #{ building.name }
+                  else
+                    option(value=building.value) #{ building.name }       
+          tr
+            td Address 1:
+            td
+              input.form-control(type='text', name='address1', value="#{ user.address1 === undefined ? '' : user.address1 }")
+            td Station 1:
+            td
+              select.form-control(name='station1')
+                option(selected='', disabled='true') Select station 1
+                for station in stations
+                  if user.station1 === station.station_name
+                    option(selected, value=station.station_cd) #{ station.station_name }
+                  else
+                    option(value=station.station_cd) #{ station.station_name }   
+          tr
+            td Address 2:
+            td
+              input.form-control(type='text', name='address2', value="#{ user.address2 === undefined ? '' : user.address2 }")
+            td Station 2:
+            td
+              select.form-control(name='station2')
+                option(selected='', disabled='true') Select station 2
+                for station in stations
+                  if user.station2 === station.station_name
+                    option(selected, value=station.station_cd) #{ station.station_name }
+                  else
+                    option(value=station.station_cd) #{ station.station_name }
+          tr
+            td Address 3:
+            td
+              input.form-control(type='text', name='address3', value="#{ user.address3 === undefined ? '' : user.address3 }")
+            td Station 3:
+            td
+              select.form-control(name='station3')
+                option(selected='', disabled='true') Select station 3
+                for station in stations
+                  if user.station3 === station.station_name
+                    option(selected, value=station.station_cd) #{ station.station_name }
+                  else
+                    option(value=station.station_cd) #{ station.station_name }
+          tr
+            td About me:
+            td(colspan='2')
+              textarea.form-control(placeholder='Comment here ...', name="demain") #{ user.demain === undefined ? '' : user.demain }
+            td
+            td
+              input.btn.btn-default(type='button', value='Back') 
+              &nbsp
+              input#updateUserDetail.btn.btn-info(type='submit', value='Update', onclick="page_load_start()")
+              input(type="hidden", name="id", value=user.id)
+              input(type="hidden", name="company_id", value=user.company_id)

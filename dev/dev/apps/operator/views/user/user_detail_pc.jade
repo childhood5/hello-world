@@ -1,0 +1,182 @@
+extends ../layout_pc
+block header
+  nav(class="navbar navbar-default")
+    div(class="container-fluid")
+      div(class="navbar-header")
+        button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
+          span(class="sr-only") Toggle navigation
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(class="navbar-brand" href="#") Dashboard
+
+      div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
+        ul(class="nav navbar-nav")
+          li 
+            a(href="#") User
+          li
+            a(href="#") Worker
+          li
+            a(href="#") Operator user
+          li
+            a(href="#") Configuration
+        ul(class="nav navbar-nav navbar-right")
+          li 
+            a Logged in:
+          li 
+            a(href="#") 
+              span administrator |
+          li 
+            a(href="#") 
+              span Logout
+
+block content
+  table(class="table borderless")
+    tr
+      td(rowspan="7")
+        img(src="/global/imgs/user.png" width="250px" height="250px")
+      td First name:
+      td 
+        input(class="form-control" type="text" name="firstname")
+      td Nick name:
+      td 
+        input(class="form-control" type="text" name="nickname")
+    tr
+      td Last name:
+      td 
+        input(class="form-control" type="text" name="lastname")
+      td Working counter:
+      td 
+        input(class="form-control" type="number" name="workingcounter")
+    
+    tr
+      td First name kana:
+      td 
+        input(class="form-control" type="text" name="firstnamekana")
+      td Zip code:
+      td 
+        input(class="form-control" type="text" name="zipcode")
+    
+    tr
+      td Last name kana:
+      td 
+        input(class="form-control" type="text" name="lastnamekana")
+      td Birthday:
+      td 
+        input(class="form-control" type="date" name="birthdaykana")
+    
+     tr
+      td Phone number:
+      td 
+        input(class="form-control" type="number" name="phonenumber")
+      td Sex:
+      td 
+        input(type="radio" name="sex") 
+        span Male
+        input(type="radio" name="sex")
+        span Female
+        input(type="radio" name="sex")
+        span Unknown
+      
+     tr
+      td Email:
+      td(colspan="2")
+        input(class="form-control" type="email" name="email")
+    
+    tr
+      td 
+      td 
+        input(type="checkbox" name="havepet")
+        span have pet ?
+    
+    tr
+      td Room type:
+      td 
+        select(class="form-control" name="roomtype")
+          option(selected disabled="true") Select room type
+          option 1K1D
+      
+      td Room size:
+      td 
+        select(class="form-control" name="roomsize")
+          option(selected disabled="true") Select room size
+          option 42m
+      
+    tr
+      td City:
+      td 
+        select(class="form-control" name="prefecture")
+          option(selected disabled="true") Select prefecture 
+          option Tokyo
+      
+      td Building type:
+      td 
+        select(class="form-control" name="buildingtype")
+          option(selected disabled="true") Select building type
+          option Mansion
+          option Separate house
+      
+    
+    tr
+      td Address 1:
+      td 
+        input(type="text" class="form-control" name="address1")
+      td Station 1:
+      td 
+        select(class="form-control" name="station1")
+          option(selected disabled="true") Select station
+          option Tokyo
+      
+    
+    tr
+      td Address 2:
+      td 
+        input(type="text" class="form-control" name="address2")
+      td Station 2:
+      td 
+        select(class="form-control" name="station2")
+          option(selected disabled="true") Select station
+          option Tokyo
+      
+    
+    tr
+      td Address 3:
+      td 
+        input(type="text" class="form-control" name="address3")
+      td Station 3:
+      td 
+        select(class="form-control" name="station3")
+          option(selected disabled="true") Select station
+          option Tokyo)
+    
+    tr
+      td Payment status:
+      td 
+        select(class="form-control" name="paymentstatus")
+          option(selected disabled="true") Select paid status
+          option Paid
+          option Unpaid
+          option In process
+    
+    tr
+      td About me:
+      td(colspan="2")
+        textarea(placeholder="Comment here ..." class="form-control")
+      
+      td 
+      td 
+        input(type="button" class="btn btn-default" value="Back")
+        input(type="button" class="btn btn-info" value="Update" id="updateUserDetail")
+      
+    
+  </table)
+
+block footer
+  footer
+    div(class="container",role="footer")
+      div(class="extra")
+        div(class="hk-center")
+          a(href="https://prottapp.com/ja/privacy.html",target="blank") プライバシーポリシー
+          a(href="https://prottapp.com/ja/terms.html",target="blank") 利用規約
+          a(href="mailto:info@prottapp.com",target="blank") お問い合わせ
+        div(class="hk-center") @2015 ショコラ

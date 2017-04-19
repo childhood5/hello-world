@@ -1,0 +1,106 @@
+﻿{ 
+  "session": {
+    "security_code": "hk1!984@#1441*",
+    "timeout": 3600
+  },
+  "webpay": {
+    "api_public_key": "test_public_dbI4fWeix4ZXctodRhccG0Am",
+    "api_private_key": "test_secret_89Ad37853eyl9JQewwerR2Qf",
+    "currency":"jpy"
+  },
+  "pagination": {
+    "limit_item" : 20,
+    "cache_page": 5,
+    "item_per_page": "10,20,50,100"
+  },
+  "database_type": {
+    "mysql": "mysql",
+    "mongo": "mongo"
+  },
+  "limit_register_default": {
+    "limit": 100,
+    "is_show_limit":false
+  },
+  "register_time": {
+  	"time_10": "10:00",
+  	"time_13": "13:00",
+  	"time_16": "16:00",
+  	"time_19": "19:00"
+  },
+  "mail_config": {
+    "en_k": "shochola123",
+    "mail_path": "/apps/frontend/views/template/",
+    "template_user_reg_success": "user_register_success",
+    "template_worker_reg_success": "worker_register_success",
+    "template_service_reg_success": "service_register_success",
+    "template_service_reg_to_admin": "service_register_to_admin",
+    "template_worker_reg_to_admin": "worker_register_to_admin",
+    "template_user_recover_password": "user_recover_password",
+    "template_worker_recover_password": "worker_recover_password",
+    "template_user_recover_password_changed": "user_recover_password_changed",
+    "template_worker_recover_password_changed": "worker_recover_password_changed",
+    "mailto": "mailto:order-shocola@inte.co.jp",
+    "operator_user_email" : "order-shocola@inte.co.jp",
+    "operator_worker_email" : "recruit-shocola@inte.co.jp"
+  },
+  "template": {
+    "template_path": "/views/template/",
+    "user_terms": "user_terms.html",
+    "staff_terms": "staff_terms.html",
+    "user_policy":"http://shocola.jp/info/policy.html",
+    "staff_policy":"http://shocola.jp/info/staffpolicy.html"
+  },
+  "log_service": {
+    "current_output": "db",
+    "console_output": "console",
+    "db_output": "db",
+    "error_type": "Error",
+    "warning_type": "Warning",
+    "info_type": "Information",
+    "com_frontend":"front end",
+    "com_operator":"operator"
+  },
+  "rasta": {
+    "worker_export_path": "/public/share/export/",
+    "worker_export_url": "/export/",
+    "worker_import_path": "/public/share/import/"
+  },
+  "prices": {
+    "amount": 2,
+    "price_off_first_time":50,
+    "price_off_second_time":30
+  },
+  "yearAgo": 70,
+  "user": {
+    "birthday_year_default": 1980
+  },
+  "zipcode":{
+    "url": "http://zip.cgis.biz/xml/zip.php"
+  },
+  "recover_password": {
+    "time_expire": 1
+  },
+  "login_times": {
+    "times": 5,
+    "timeout": 300
+  },
+  "message":{
+    "type-error":"error",
+    "type-warning":"warning",
+    "type-info":"info"
+  },
+  "serviceRequest": {
+    "expire_days": 40,
+	  "start_days_apply": 3
+  },
+  "encryptDecrypt": {
+    "secretKey":   "Hdiekgbzd4kForef",
+    "mailPassKey": "Ntttldtvdtvglvpd"
+  },
+  "buildingTypes": [
+    {"value": "1", "name": "apartment"},
+    {"value": "2", "name": "mansion"},
+    {"value": "3", "name": "house"},
+    {"value": "4", "name": "other"}
+  ]
+}

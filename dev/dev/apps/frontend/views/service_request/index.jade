@@ -1,0 +1,166 @@
+extends ../layout
+block header
+  script(type='text/javascript', src='/content/js/service_request_controller.js')
+  link(rel='stylesheet', href='/content/css/step_bar_compiled.css')
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg box-middle leftside-color-orange")
+      form(action="/confirm-payment", method="post" id="f-service-request" novalidate)
+        div(id="step_bar_box")
+          ol(class="step_bar")
+            li(class="current") #{__('step1')}
+            li #{__('step2')}
+            li #{__('step3')}
+        div(class="hk-center")
+          p
+            h5 #{lastNameUser}#{__('titleServiceRequest')}
+        br
+        div(class="border-all input-field basic_info hk-center")
+          h3(class="hk-bold white hk-ex120") #{__('descriptionOne')}
+          p(class="white") #{__('serviceHelpUser')}
+        div(class=" input-field hk-hiddeen")
+          button(type="button" class="btn") #{__('serviceBasic')}
+        br
+        div(class="hk-left input-field")
+          p(class="orange") #{__('roomServiceRequest')}
+        div(class="input-field")
+          - var n = 1
+          for room in rooms
+            if serviceRequest
+              input(type="hidden", id="room"+n, name="room", value="" class="hk-check" hk-group="room" hk-group-required="" + (n==1?'required':'') hk-error-group-required="#{__('error-request-room-required')}" )
+              button(type="button",readonly="readonly", class="#{n%2==0 ? 'margin-left-button' : ''} btn hk-select-box #{ serviceRequest.room.indexOf(room.id + '. ' + room.name) >= 0 ? '-active' : '' }", hk-ref="room"+n, hk-value="#{ room.id + '. ' + room.name }") #{room.name}
+              if n%2===0
+                br
+                br
+              - n = n + 1
+            else
+              input(type="hidden", id="room"+n, name="room", value="" class="hk-check" hk-group="room" hk-group-required="" + (n==1?'required':'') hk-error-group-required="#{__('error-request-room-required')}" )
+              button(type="button",readonly="readonly", class="#{n%2==0 ? 'margin-left-button' : ''} btn hk-select-box", hk-ref="room"+n, hk-value="#{  room.id + '. ' + room.name}") #{room.name}
+              if n%2===0
+                br
+                br
+              - n = n + 1
+        div(class="hk-left input-field")
+          p(class="orange") #{__('serviceRequest')}
+        div(class="input-field")
+          - var n = 1
+          for service in services
+            if service.is_basic != 1
+              if serviceRequest
+                input(type="hidden", id="service"+n, name="service", value="" hk-group="service" hk-group-required="" + (n==1?'required':'') hk-error-group-required="#{__('error-request-service-required')}")
+                button(type="button",readonly="readonly", class="#{n%2==0 ? 'margin-left-button' : ''} btn hk-select-box #{ serviceRequest.service.indexOf(service.id + '. ' + service.service_name) >= 0 ? '-active' : '' }", hk-ref="service"+n, hk-value="#{ service.id + '. ' + service.service_name }") #{service.service_name}
+                if n%2===0
+                  br
+                  br
+                - n = n + 1
+              else
+                input(type="hidden", id="service"+n, name='service', value="" hk-group="service"  hk-group-required="" + (n==1?'required':'') hk-error-group-required="#{__('error-request-service-required')}" )
+                button(type="button",readonly="readonly", class="#{n%2==0 ? 'margin-left-button' : ''} btn hk-select-box", hk-ref="service"+n, hk-value="#{ service.id + '. ' + service.service_name}") #{service.service_name}
+                if n%2===0
+                  br
+                  br
+                - n = n + 1
+        br
+        div(class="hk-left input-field")
+          p(class="orange") #{__('dayServiceRequest')}
+        div(class="dropdown hk-center input-field")
+          select(class='btn btn-default dropdown-toggle hk-check' hk-required="required" hk-error-required="#{__('error-request-date-required')}" placeholder='Expiration day', required='required', name="date", id="bottom-border")
+            option(value='', selected, id="t") #{__('selectDay')}
+            for ls in listDays
+              if serviceRequest
+                if ls.dateToday === serviceRequest.date
+                  option(value='#{ls.dateToday}', selected) #{ls.dateToday}
+                else
+                  option(value='#{ls.dateToday}') #{ls.dateToday}
+              else
+                option(value='#{ls.dateToday}') #{ls.dateToday}
+        br
+        div(class="input-field")
+          input(type="hidden", id="time", name="time", value="",class="hk-check" hk-required="required" hk-error-required="#{__('error-request-time-required')}")
+          if serviceRequest            
+            if global.config.limit_register_default.is_show_limit == true
+              if limit.first == 0
+                button(type="button",hk-group="time", disabled ,readonly="readonly", hk-ref="time", hk-value="10:00 ×：残り#{ limit.first}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('10:00 ×：残り' + limit.first + '枠') >= 0) ? '-active' : '' }", name="time") 10:00 <br> ×：残り#{ limit.first}枠
+              else if limit.first < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 △：残り#{ limit.first}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('10:00 △：残り' + limit.first + '枠') >= 0) ? '-active' : '' }", name="time") 10:00 <br> △：残り#{ limit.first}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 ○：残り#{ limit.first}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('10:00 ○：残り' + limit.first + '枠') >= 0) ? '-active' : '' }", name="time") 10:00 <br> ○：残り#{ limit.first}枠
+              if limit.second == 0
+                button(type="button",hk-group="time",disabled , readonly="readonly", hk-ref="time", hk-value="13:00 ×：残り#{ limit.second}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('13:00 ×：残り'+ limit.second + '枠') >= 0) ? '-active' : '' }", name="time") 13:00 <br> ×：残り#{ limit.first}枠
+              else if limit.second < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 △：残り#{ limit.second}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('13:00 △：残り'+ limit.second + '枠') >= 0) ? '-active' : '' }", name="time") 13:00 <br> △：残り#{ limit.first}枠
+              else 
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 ○：残り#{ limit.second}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('13:00 ○：残り'+ limit.second + '枠') >= 0) ? '-active' : '' }", name="time") 13:00 <br> ○：残り#{ limit.first}枠
+              br
+              br
+              if limit.third == 0
+                button(type="button",hk-group="time",disabled , readonly="readonly", hk-ref="time", hk-value="16:00 ×：残り#{limit.third}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('16:00 ×：残り'+ limit.third + '枠') >= 0) ? '-active' : '' }", name="time") 16:00 <br> ×：残り#{limit.third}枠
+              else if limit.third < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 △：残り#{limit.third}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('16:00 △：残り'+ limit.third + '枠') >= 0) ? '-active' : '' }", name="time") 16:00 <br> △：残り#{limit.third}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 ○：残り#{limit.third}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('16:00 ○：残り'+ limit.third + '枠') >= 0) ? '-active' : '' }", name="time") 16:00 <br> ○：残り#{limit.third}枠
+              if limit.fourth == 0
+                button(type="button",hk-group="time",disabled , readonly="readonly", hk-ref="time", hk-value="19:00 ×：残り#{limit.fourth}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('19:00 ×：残り'+ limit.fourth + '枠') >= 0) ? '-active' : '' }", name="time") 19:00 <br> ×：残り#{limit.fourth}枠
+              else if limit.fourth < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 △：残り#{limit.fourth}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('19:00 △：残り'+  limit.fourth + '枠') >= 0) ? '-active' : '' }", name="time") 19:00 <br> △：残り#{limit.fourth}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 ○：残り#{limit.fourth}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('19:00 ○：残り'+ limit.fourth + '枠') >= 0) ? '-active' : '' }", name="time") 19:00 <br> ○：残り#{limit.fourth}枠 
+            else
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 ○：残り#{ limit.first}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('10:00 ○：残り' + limit.first + '枠') >= 0) ? '-active' : '' }", name="time") 10:00～
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 ○：残り#{ limit.second}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('13:00 ○：残り'+ limit.second + '枠') >= 0) ? '-active' : '' }", name="time") 13:00～
+              br
+              br
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 ○：残り#{limit.third}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('16:00 ○：残り'+ limit.third + '枠') >= 0) ? '-active' : '' }", name="time") 16:00～
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 ○：残り#{limit.fourth}枠", class="btn hk-select-box #{ (serviceRequest.time !== undefined && serviceRequest.time.indexOf('19:00 ○：残り'+ limit.fourth + '枠') >= 0) ? '-active' : '' }", name="time") 19:00～
+          else
+            if global.config.limit_register_default.is_show_limit == true
+              if limit.first == 0
+                button(type="button",hk-group="time",disabled ,readonly="readonly", hk-ref="time", hk-value="10:00 ×：残り#{ limit.first}枠", class="btn hk-select-box", name="time") 10:00 <br> ×：残り#{ limit.first}枠
+              else if limit.first < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 △：残り#{ limit.first}枠", class="btn hk-select-box", name="time") 10:00 <br> △：残り#{ limit.first}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 ○：残り#{ limit.first}枠", class="btn hk-select-box", name="time") 10:00 <br> ○：残り#{ limit.first}枠
+              if limit.second == 0
+                button(type="button",hk-group="time",disabled ,readonly="readonly", hk-ref="time", hk-value="13:00 ×：残り#{ limit.second}枠", class="btn hk-select-box", name="time") 13:00 <br> ×：残り#{ limit.second}枠
+              else if limit.second < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 △：残り#{ limit.second}枠", class="btn hk-select-box", name="time") 13:00 <br> △：残り#{ limit.second}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 ○：残り#{ limit.second}枠", class="btn hk-select-box", name="time") 13:00 <br> ○：残り#{ limit.second}枠
+              br
+              br
+              if limit.third == 0 
+                button(type="button",hk-group="time",disabled ,readonly="readonly", hk-ref="time", hk-value="16:00 ×：残り#{limit.third}枠", class="btn hk-select-box", name="time") 16:00 <br> ×：残り#{limit.third}枠
+              else if limit.third < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 △：残り#{limit.third}枠", class="btn hk-select-box", name="time") 16:00 <br> △：残り#{limit.third}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 ○：残り#{limit.third}枠", class="btn hk-select-box", name="time") 16:00 <br> ○：残り#{limit.third}枠
+              if limit.fourth == 0
+                button(type="button",hk-group="time",disabled , readonly="readonly", hk-ref="time", hk-value="19:00 ×：残り#{limit.fourth}枠", class="btn hk-select-box", name="time") 19:00 <br> ×：残り#{limit.fourth}枠
+              else if limit.fourth < 5
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 △：残り#{limit.fourth}枠", class="btn hk-select-box", name="time") 19:00 <br> △：残り#{limit.fourth}枠
+              else
+                button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 ○：残り#{limit.fourth}枠", class="btn hk-select-box", name="time") 19:00 <br> ○：残り#{limit.fourth}枠  
+            else
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="10:00 ○：残り#{ limit.first}枠", class="btn hk-select-box", name="time") 10:00～
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="13:00 ○：残り#{ limit.second}枠", class="btn hk-select-box", name="time") 13:00～
+              br
+              br
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="16:00 ○：残り#{limit.third}枠", class="btn hk-select-box", name="time") 16:00～
+              button(type="button",hk-group="time", readonly="readonly", hk-ref="time", hk-value="19:00 ○：残り#{limit.fourth}枠", class="btn hk-select-box", name="time") 19:00～
+          div(class="hk-center orange hk-ex90 mt10") #{__('user_service_request_note_bottom')}
+        div(class="input-field")
+          br
+          p(class="orange")
+            その他伝達事項
+          if serviceRequest && serviceRequest.demain
+            textarea(id="demain", name="demain", class="form-control hk-comment ng-pristine ng-untouched ng-valid" placeholder="何か伝達事項がありましたらここに記載してください") #{serviceRequest.demain}
+          else
+            textarea(id="demain", name="demain", class="form-control hk-comment ng-pristine ng-untouched ng-valid" placeholder="何か伝達事項がありましたらここに記載してください")
+        br
+        br
+        div(class="hk-center input-field")
+            input(type="button", class="btn btn-lg btn-primary", hk-form="submit" hk-ref="f-service-request" value="#{__('nextServiceRequest')}")
+        br
+

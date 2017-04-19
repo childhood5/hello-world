@@ -1,0 +1,62 @@
+extends ../layout_staff
+block header
+  script(type='text/javascript', src='/content/js/worker_controller.js')
+  
+block footer
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="box-no-side")
+    div(class="hk-bg box-completion  leftside-color-orange")
+      div(class="input-field")
+        p( class="hk-ex130 hk-bold") 
+          | #{__('registerDashboard')}
+          br
+          | #{__('thanks')}
+          br
+          br
+        p
+          登録完了メールをお送りしました。
+          br
+          重要な情報が記載されていますので必ずご一読の上、保存してください。
+          br
+          br
+          弊社にてご登録内容を確認後改めてご連絡を差し上げます。
+          br
+          br
+          なお、ご連絡までは数日かかる場合がございますので予めご了承ください。
+      div(class="panel panel-warning mt30 input-field")
+        div(class="panel-heading")
+          h3(class="panel-title") サービス開始まで
+        div(class="mt30 hk-flow-adjust")
+          div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+            div(class="flow-step") Step1
+          div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+            div(class="flow-word")登録説明・研修会
+          div(class="hk-clr pt10")
+            ご都合の合う時間で登録説明・研修会に参加してください。お掃除はコツさえ覚えれば誰にでもできる簡単なお仕事です！
+        div(class="mt30 hk-flow-adjust")
+          div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+            div(class="flow-step") Step2
+          div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+            div(class="flow-word") スケジュール登録
+          div(class="hk-clr pt10")
+            働けるスケジュールについてお伺いします。１回２時間からなので是非スキマ時間を活用してください♪
+        div(class="mt30 hk-flow-adjust")
+          div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+            div(class="flow-step") Step3
+          div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+            div(class="flow-word") お仕事ご紹介・決定
+          div(class="hk-clr pt10")
+            スケジュールに合わせてお仕事をご紹介します。内容をしっかり確認してご返信ください。
+        div(class="mt30 hk-flow-adjust")
+          div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+            div(class="flow-step") Step4
+          div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+            div(class="flow-word") お仕事実施・報酬受取
+          div(class="hk-clr pt10")
+            当日は余裕を持って向かいましょう。企業会員様限定のサービスですので安心してお仕事できます。<br>報酬はお仕事完了の翌月にお渡しとなります。
+
+
+  

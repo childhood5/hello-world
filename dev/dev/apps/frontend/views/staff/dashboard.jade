@@ -1,0 +1,37 @@
+extends ../layout_staff
+block header
+  script(type='text/javascript', src='/content/js/worker_controller.js')
+block footer
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div
+    form(action="/service-request", method="get")
+      div(class="hk-bg box-completion black")
+        p( class="hk-ex130 hk-bold") 
+          span #{__('registerDashboard')}
+          br
+          span #{__('thanks')}
+          br
+          br
+        p
+          span #{__('completeRegister')}
+          br
+          span #{__('descriptionImportant')}
+          br
+          span #{__('readText')}
+          br
+          br
+          span #{__('yourInformation')}
+          br
+          span #{__('contact')}
+          br
+          br
+          span #{__('lostTime')}
+          br
+          span #{__('note')}
+          br
+          br
+
+  

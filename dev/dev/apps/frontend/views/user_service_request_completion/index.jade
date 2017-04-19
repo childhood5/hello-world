@@ -1,0 +1,55 @@
+extends ../layout
+block header
+  script(type='text/javascript', src='/content/js/service_request_completion_controller.js')
+
+block content
+  div(class="container")
+    div(class="page-header")
+      img(src="/content/css/imgs/logo.png")
+    div
+      form(action="", method="get")
+        div(class="hk-bg box-completion black leftside-color-orange")
+          p( class="hk-ex130 hk-bold") お申込みを受け付けました
+            br
+            br
+          div(class="hk-center hk-flow-adjust")
+            お申込み内容が記載されたメールをお送りしましたので必ずご一読の上保存してください
+          div(class="panel panel-warning mt30 input-field")
+            div(class="panel-heading")
+              h3(class="panel-title") サービス開始まで
+            div(class="mt30 hk-flow-adjust")
+              div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+                div(class="flow-step") Step1
+              div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+                div(class="flow-word") マッチング
+              div(class="hk-clr pt10")
+                ご希望に沿ってショコラスタッフの調整をいたします。
+            div(class="mt30 hk-flow-adjust")
+              div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+                div(class="flow-step") Step2
+              div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+                div(class="flow-word") 成約
+              div(class="hk-clr pt10")
+                ショコラスタッフの確定後に詳細についてご連絡をいたします。内容確認後、ご予約成立となります。
+            div(class="mt30 hk-flow-adjust")
+              div(class="padding-none hk-bold col-xs-4 col-sm-4 col-md-4")
+                div(class="flow-step") Step3
+              div(class="padding-none hk-bold col-xs-8 col-sm-8 col-md-8")
+                div(class="flow-word") サービス提供
+              div(class="hk-clr pt10")
+                サービス当日はリラックスしてショコラスタッフをお待ちください。
+          &nbsp;
+block footer
+
+
+
+
+
+
+
+
+
+
+
+
+

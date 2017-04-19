@@ -8,5 +8,21 @@
 		<div ng-controller = "SampleController" >
 			<h2>Welcome {{title}} and {{name}}</h2>
 		</div>
+		
+		<div ng-controller="reset_data">
+			<input type="text" name="firstname" style="margin-bottom:5px" ng-model="firstname"> <br/>
+			<input type="text" name="lastname" style="margin-bottom:5px" ng-model="lastname"> <br/>
+			<input type="text" name="email" style="margin-bottom:5px" ng-model="email"> <br/>
+			<button ng-click="reset()">Reset</button>{{firstname}} 
+		</div>
+		
+		<div ng-controller="ajax_controller">
+			<p ng-repeat="obj in information">
+				Name: {{obj.name}} <br/>
+				Email: {{obj.email}} <br/>
+			</p>
+			End Ajax
+		</div>
+		
 	</body>
 </html>

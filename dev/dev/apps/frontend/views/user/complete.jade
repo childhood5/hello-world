@@ -1,0 +1,30 @@
+extends ../layout
+block header
+  script(type='text/javascript', src='/content/js/user_controller.js')
+
+block content
+
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg box-middle leftside-color-orange")
+
+    form(action="/user/update-info", method="get")
+      p(class="hk-ex130 hk-bold hk-center")
+        | #{__('titleComplete')}
+        br
+        br
+      p(class="hk-center")
+        |#{__('user_register_complete_text')}
+        br
+        |#{__('user_register_complete_text_1')}
+        br
+        |#{__('user_register_complete_text_2')}
+        br
+        br
+        |#{__('user_register_complete_text_3')}
+        br
+        |#{__('user_register_complete_text_4')}
+      br
+      div.hk-center
+        button( type="submit" class="btn btn-lg btn-primary hk-bold") #{__('signUpService')}
+block footer

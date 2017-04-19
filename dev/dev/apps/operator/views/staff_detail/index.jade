@@ -1,0 +1,122 @@
+extends ../layout_pc
+block header
+   script(type='text/javascript', src='/operator/content/js/staff_information_list_controller.js')
+
+block content
+  div
+    table.table.borderless 
+      tr
+        td(rowspan='6')
+          img(src='/operator/content/css/images/user.png', width='250px', height='250px')
+        td Staff code:
+        td
+          input.form-control(type='text', name='firstname', id="staff_code" , value="#{list.staff.staff_code == undefined ? '' : list.staff.staff_code}")
+        td Sex:
+        td
+          if list.staff.sex === 'MAL'
+            input(type='radio', name='sex', checked, id="male")
+            | Male
+          else
+            input(type='radio', name='sex', id="male")
+            | Male
+          if list.staff.sex === 'FEM'
+            input(type='radio', name='sex',checked, id="female")
+            | Female
+          else
+            input(type='radio', name='sex', id="female")
+            | Female
+          if list.staff.id && list.staff.sex !== 'MAL' && list.staff.sex !== 'FEM'
+            input(type='radio', name='sex', checked, id="unknown")
+            | Unknown
+          else 
+            input(type='radio', name='sex', id="unknown")
+            | Unknown
+      tr
+        td First name:
+        td
+          input.form-control(type='text', name='firstname', id="first_name" ,value="#{list.staff.first_name == undefined ? '' : list.staff.first_name}")
+        td Last name:
+        td
+          input.form-control(type='text', name='nickname', id="last_name", value="#{list.staff.last_name == undefined ? '' : list.staff.last_name}")
+      tr
+        td First name kana:
+        td
+          input.form-control(type='text', name='firstname', id="first_name_kana", value="#{list.staff.first_name_kana == undefined ? '' : list.staff.first_name_kana}")
+        td Last name kana:
+        td
+          input.form-control(type='text', name='nickname', id="last_name_kana", value="#{list.staff.last_name_kana == undefined ? '' : list.staff.last_name_kana}")
+      tr
+        td Nick name:
+        td
+          input.form-control(type='text', name='firstnamekana', id="nick_name", value="#{list.staff.nickname  == undefined ? '' : list.staff.nickname}")
+        td Birthday:
+        td
+          input.form-control(type='date', name='birthdaykana', id="birthday", value="#{date}")
+      tr
+        td Phone number:
+        td
+          input.form-control(type='number', name='phonenumber', id="phone_number", value="#{list.staff.tel == undefined ? '' : list.staff.tel}")
+        td Email:
+        td
+          input.form-control(type='email', name='email', id="email", value="#{list.staff.email_address == undefined ? '' : list.staff.email_address}")
+      tr
+      tr
+        td City:
+        td
+          select.form-control(name='prefecture', id="prefecture")
+            option(selected value='') Select prefecture
+            for prefectures in listPrefectures
+              if list.prefectures
+                if list.prefectures.name == prefectures.name
+                  option(value='#{prefectures.name}' selected) #{prefectures.name}
+                else
+                  option(value='#{prefectures.name}') #{prefectures.name}
+              else
+                option(value='#{prefectures.name}') #{prefectures.name}
+        td Payment type:
+        td
+          select.form-control(name='paymenttype')
+            option(selected, value='') Select payment type
+            option(value='Visa card') Visa card
+            option(value='Master card') Master card
+      tr
+        td Address 1:
+        td
+          input.form-control(type='text', name='address1', id="address1", value="#{list.staff.address1 == undefined ? '' : list.staff.address1}")
+        td Station 1:
+        td
+          select.form-control(name='station1', value='', id="station1")
+            option(selected,  value='') Select station 1
+            for station in listStations
+              if stationNamePriorityFirst
+                if stationNamePriorityFirst == station.station_name
+                  option(value="#{stationNamePriorityFirst}" selected) #{stationNamePriorityFirst}
+                else
+                  option(value="#{station.station_name}") #{station.station_name}
+              else
+                option(value="#{station.station_name}") #{station.station_name}
+      tr
+        td Address 2:
+        td
+          input.form-control(type='text', name='address2', id="address2", value="#{list.staff.address2 == undefined ? '' : list.staff.address2}")
+        td Station 2:
+        td
+          select.form-control(name='station2', value='', id="station2")
+            option(selected, value='') Select station 2
+            for station in listStations
+              if stationNamePrioritySecond
+                if stationNamePrioritySecond == station.station_name
+                  option(value="#{stationNamePrioritySecond}" selected) #{stationNamePrioritySecond}
+                else
+                  option(value="#{station.station_name}") #{station.station_name}
+              else
+                option(value="#{station.station_name}") #{station.station_name}
+      tr
+        td About me:
+        td(colspan='2')
+          textarea.form-control(placeholder='Comment here ...', id="textarea") #{list.staff.demain == undefined ? '' : list.staff.demain}
+        td
+        td
+          input.btn.btn-default(type='button', value='Back', id="back")
+          input#updateUserDetail.btn.btn-info(type='button', value='Update', name="update")
+

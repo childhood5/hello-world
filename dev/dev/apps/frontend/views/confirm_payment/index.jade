@@ -1,0 +1,79 @@
+extends ../layout
+block header
+  script(type='text/javascript', src='/content/js/confirm_payment_controller.js')
+  link(rel='stylesheet', href='/content/css/step_bar_compiled.css')
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg box-middle leftside-color-orange") 
+    div(id="step_bar_box")
+      ol(class="step_bar")
+        li #{__('step1')}
+        li(class="current") #{__('step2')}
+        li #{__('step3')}
+    div( class="hk-center")
+      p
+        h5 #{__('user_confirm_payment_title_page')}
+        br
+    div(class="confirm-col container-fluid")
+      div(class="col-xs-4 col-sm-4 col-md-4 orange") #{__('room')}
+      div(class="col-xs-8 col-sm-8 col-md-8 ")
+        - var n = 0 
+        each room in serviceRequest.room
+          span #{ (n!=0 ? ' / ' : '') + room.split('. ')[1]}
+          - n++
+    div(class="confirm-col container-fluid")
+      div(class="col-xs-4 col-sm-4 col-md-4 orange") #{__('addService')}
+      div(class="col-xs-8 col-sm-8 col-md-8 ")
+        - var count = 0
+        each service in serviceRequest.service
+          if count < serviceRequest.service.length
+            if service.indexOf('(basic)') < 0
+              p #{ service.split('. ')[1] }
+          - count++
+    div( class="confirm-col container-fluid")
+      div( class="col-xs-4 col-sm-4 col-md-4 orange") #{__('time')}
+      div( class="col-xs-8 col-sm-8 col-md-8 ")
+        each time in serviceRequest.time
+          p #{ serviceRequest.date + ' ' + time.split(' ')[0] + '(2h)' }
+      
+    div( class="confirm-col container-fluid")
+      div( class="col-xs-4 col-sm-4 col-md-4 orange") #{__('money')} 
+      div( class="col-xs-8 col-sm-8 col-md-8 ")
+        span( class="hk-bold hk-ex130") #{serviceRequest.sumPrices} 円  
+
+    div( class="confirm-col container-fluid")
+      div( class="col-xs-4 col-sm-4 col-md-4 hk-left orange") #{__('labelCardRegister')} 
+      div( class="col-xs-8 col-sm-8 col-md-8 hk-left")
+        form(action="/process-card" method="post")
+          div(id="webpay-button")
+            script(src="https://checkout.webpay.jp/v2/" class="webpay-button" data-key="#{ global.config.webpay.api_public_key }" data-lang="ja")
+          if customer.card === undefined
+            p
+              a(href="", class="webpay-link") #{ __('cardRegister') + ' >>' }
+          else
+            a(href="" class="webpay-link")
+              p
+                if customer.card.activeCard.type === 'Visa'
+                  img(src="/content/css/imgs/Visa.png" id='cardType')
+                  br
+                  | #{ '**** **** **** ' + customer.card.activeCard.last4 }
+                else if customer.card.activeCard.type === 'MasterCard'
+                  img(src="/content/css/imgs/Master.png" id='cardType')
+                  br
+                  | #{ '**** **** **** ' + customer.card.activeCard.last4 }
+              p #{ customer.card.activeCard.name }
+              p #{ __('expire') + ' ' + customer.card.activeCard.expMonth + '/' + customer.card.activeCard.expYear }
+    if customer.card === undefined
+      div( class="col-md-10 col-md-offset-2")
+        a(href="https://webpay.jp/security", target="_blank") #{ __('webpaylink' ) }
+        br
+        br
+        br
+    div(class="wrap-button")
+      a( href="/service-request" class="btn btn-sm btn-default hk-button-medium-width") #{__('back')}
+      if customer.card !== undefined
+        a( href="/user-service-request-completion" class="btn btn-sm btn-info hk-button-medium-width margin-left-button") #{__('nextConfirmPayment')}
+      else 
+        a( href="/user-service-request-completion" disabled class="btn btn-sm btn-info hk-button-medium-width margin-left-button") #{__('nextConfirmPayment')}

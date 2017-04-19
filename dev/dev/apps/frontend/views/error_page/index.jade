@@ -1,0 +1,27 @@
+extends ../layout_staff
+block header
+
+block content
+  div(class="page-header")
+    img(src="/content/css/imgs/logo.png")
+  div(class="hk-bg error leftside-color-orange")
+    div(class="error-page")
+      if error
+        img(src="/content/css/imgs/#{ error.type }.jpg")
+        span(class="error-span orange") #{ error.content }
+      else
+        img(src="/content/css/imgs/info.jpg")
+        span(class="error-span orange") #{__('contentError')}
+    br
+    br
+    div(class="form-group hk-center")
+      span(class="orange") #{__('again')}
+      br
+      br
+      br
+      if error
+        a(href="#{ error.link }") #{__('error.label') }
+      else
+        a(href="/staff-terms") #{__('loginPage')}
+      br
+

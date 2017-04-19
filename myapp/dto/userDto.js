@@ -24,7 +24,7 @@ var model = {
 		}
     }
 };
-exports.employeeModel = global.db.waterline.Collection.extend(model);
+exports.modelDto = global.db.waterline.Collection.extend(model);
 
 
 

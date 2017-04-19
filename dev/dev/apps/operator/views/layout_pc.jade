@@ -1,0 +1,100 @@
+doctype html
+html(lang="ja")
+  head
+    title= title
+    
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    meta(name="description", content="SHOCOLA")
+    meta(name="author", content="intelligence")
+    
+    link(rel='stylesheet', href='/plugin/bootstrap-3.3.4/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/plugin/bootstrap-3.3.4/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/plugin/jquery-ui-1.11.4/jquery-ui.min.css')
+    link(rel='stylesheet', href='/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.css')
+    link(rel='stylesheet', href='/plugin/jsgrid-1.1.0/css/jsgrid.css')
+    link(rel='stylesheet', href='/plugin/jsgrid-1.1.0/css/theme.css')
+    link(rel='stylesheet', href='/operator/content/css/main.css')  
+    link(rel='stylesheet', href='/operator/content/css/jgrid.css')
+  
+    
+    script(type='text/javascript', src='/js/lib/jquery-1.11.2.min.js')
+    script(type='text/javascript', src='/js/lib/jquery.ah-placeholder.js')
+    script(type='text/javascript', src='/js/lib/moment-with-locales-2.9.0.js')
+    script(type='text/javascript', src='/js/lib/floatlabels.min.js')
+    script(type='text/javascript', src='/plugin/jsgrid-1.1.0/release/jsgrid.min.js')
+    script(type='text/javascript', src='/operator/content/js/jgrid.js')
+    script(type='text/javascript', src='/js/lib/angular.min.js')
+
+    script(type='text/javascript', src='/plugin/jquery-ui-1.11.4/jquery-ui.min.js')
+    script(type='text/javascript', src='/plugin/bootstrap-3.3.4/js/bootstrap.min.js')
+    script(type='text/javascript', src='/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.js')
+    script(type='text/javascript', src='/plugin/page_load/page_load.js')
+    
+   
+    script(type='text/javascript', src='/js/ulti/ulti.js')
+    script(type='text/javascript', src='/js/common.js')
+    script(type='text/javascript', src='/js/ulti/validator.js')
+    script(type='text/javascript', src='/js/ulti/date.js')
+
+    block header
+
+
+  body(role="document", ng-app="shocola-operator")
+    .page_load
+    div(class="container", role="main") 
+      div(class="container", role="main")
+        #pc
+          nav.navbar.navbar-default
+            .container-fluid
+              // Brand and toggle get grouped for better mobile display
+              .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+                a.navbar-brand(href='#') Dashboard
+              // Collect the nav links, forms, and other content for toggling
+              #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                  li
+                    a(href='#') User
+                  li
+                    a(href='#') Worker
+                  li
+                    a(href='#') Operator user
+                  li
+                    a(href='#') Configuration
+                ul.nav.navbar-nav.navbar-right
+                  li
+                    a Logged in:
+                  li
+                    a(href='#')
+                      span administrator
+                      |  |
+                  li
+                    a(href='#')
+                      span Logout
+          ol.breadcrumb
+            if breadcrumb!==undefined
+              each breadcrumb in breadcrumbs
+                li: a(href="#{breadcrumb.url}") #{breadcrumb.name}
+          block content
+    footer
+      .container(role='footer')
+        .extra
+          .hk-center
+            a(href="#",target="_blank") #{__('terms')}
+            a(href=global.config.mail_config.mailto, target="blank") #{__('mailto')}
+          .hk-center
+            | @2015 ショコラ
+    script(type="text/javascript").
+      $(function() {
+      $('[placeholder]').ahPlaceholder({
+      placeholderColor : 'silver',
+      placeholderAttr : 'placeholder',
+      likeApple : true
+      });
+      });

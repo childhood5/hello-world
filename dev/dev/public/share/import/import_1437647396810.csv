@@ -1,0 +1,491 @@
+worker_stations,id,staff_code,last_name,first_name,last_name_kana,first_name_kana,nickname,profile_image_url,birthday,zip_code,sex,address1,address2,address3,gps_data,email_address,login_password,tel,payee_type,account_type,account_number,account_name,demain,profile_comment,name_say,name_mei,is_receive_notify,recover_password,sort_order,create_date,update_date,update_by,is_delete,is_hidden,frequency_id,area_id,prefecture_id,bank_branch_id,constructor,toObject,save,destroy,_defineAssociations,_normalizeAssociations,_cast,validate,toJSON
+,117,6666,111111,66666,66666,6666,666666,,Sun Aug 23 2020 07:00:00 GMT+0700 (SE Asia Standard Time),,MAL,66666,66666,,,66666@inte.co.jp,2e85ddd5edee4e3793dab5ebf64ab43a7ec697ce,666666,,,,,6666,,,,1,0,0,,,anonymous,false,false,,1,100,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,118,,ln,fn,lnk,fnk,,,,,,,,,,le.phu1@inte.co.jp,2e85ddd5edee4e3793dab5ebf64ab43a7ec697ce,0902631026,,,,,,,,,1,0,0,,,anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,120,C586124,ln,fn,lnk,fnk,,,,,,,,,,le.phueee@inte.co.jp,2e85ddd5edee4e3793dab5ebf64ab43a7ec697ce,0902631333,,,,,,,,,1,0,0,,,anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,121,C586124,ln,fn,lnk,fnk,,,,,,,,,,le.phuwwww@inte.co.jp,ec23c09d3db323604ce580bb66c80690917342ce,0902632225,,,,,,,,,1,0,0,,,anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,122,C586124,Viet,Vo,Viet,Vo,,,,,,,,,,vcqviet@gmail.com,83498314b61556f865b7d315c1381486c5dccdb7,919989274,,,,,,,,,1,0,0,,,anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,123,C586124,ln,fn,lnk,fnk,111111,,Fri Oct 30 2015 07:10:00 GMT+0700 (SE Asia Standard Time),,MAL,1,1,,,le.phu@inte.co.jp,2e85ddd5edee4e3793dab5ebf64ab43a7ec697ce,0902631025,,,,,1,,,,1,0,0,,,anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"
+,124,,q,q,q,q,,,,,,,,,,housekeeping.japan@gmail.com,1ac0dd020be74a875e3aa794ccbc91874557f303,11111111,,,,,,,,,1,1437646931427,0,Thu Jul 23 2015 17:17:38 GMT+0700 (SE Asia Standard Time),Thu Jul 23 2015 17:22:11 GMT+0700 (SE Asia Standard Time),anonymous,false,false,,1,,,"function (){ return parent.apply(this, arguments); }","function () {
+      return new defaultMethods.toObject(context, this);
+    }","function (cb) {
+      return new defaultMethods.save(context, this, cb);
+    }","function (cb) {
+      return new defaultMethods.destroy(context, this, cb);
+    }","function () {
+      new internalMethods.defineAssociations(context, this);
+    }","function () {
+      new internalMethods.normalizeAssociations(context, this);
+    }","function (values) {
+      _.keys(context._attributes).forEach(function(key) {
+        var type = context._attributes[key].type;
+
+        // Attempt to parse Array or JSON type
+        if(type === 'array' || type === 'json') {
+          if(!_.isString(values[key])) return;
+          try {
+            values[key] = JSON.parse(values[key]);
+          } catch(e) {
+            return;
+          }
+        }
+
+        // Convert booleans back to true/false
+        if(type === 'boolean') {
+          var val = values[key];
+          if(val === 0) values[key] = false;
+          if(val === 1) values[key] = true;
+        }
+
+      });
+    }","function (cb) {
+      // Collect current values
+      var values = this.toObject();
+
+      if(cb) {
+        context.validate(values, function(err) {
+          if(err) return cb(err);
+          cb();
+        });
+        return;
+      }
+
+      else {
+        return new Bluebird(function (resolve, reject) {
+          context.validate(values, function(err) {
+            if(err) return reject(err);
+            resolve();
+          });
+        });
+      }
+    }","function () {
+    var obj = this.toObject();
+
+    if (protectedAttributes.length) {
+      _.each(protectedAttributes, function(key) {
+        delete obj[key];
+      });
+    }
+
+    // Remove toJSON from the result, to prevent infinite recursion with
+    // msgpack or other recursive object transformation tools.
+    //
+    // Causes issues if set to null and will error in Sails if we delete it because blueprints call it.
+    //
+    // obj.toJSON = null;
+
+    return obj;
+  }"

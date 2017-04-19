@@ -1,0 +1,14 @@
+extends ../layout2
+block header
+  link(rel='stylesheet', href='/operator/content/css/jgrid.css')
+  script(type='text/javascript', src='/operator/content/js/jgrid.js')
+  script(type='text/javascript', src='/operator/content/js/gridview_controller.js')
+  
+
+block content
+  div(ng-controller="GridViewController")
+    input(type="hidden" value="#{page}" name="page" id="jsgrid-page")
+    input(type="hidden" value="#{cache}" name="cache" id="jsgrid-cache")
+    input(type="hidden" value="#{limit}" name="limit" id="jsgrid-limit")
+    div(id="jgrid" hk-item-per-page="#{item_per_page}" ref-pagination="pagination" ref-page="jsgrid-page" ref-cache="jsgrid-cache" ref-limit="jsgrid-limit" hk-width="80%" hk-height="300")
+    div(id="pagination")

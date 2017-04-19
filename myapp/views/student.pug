@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+   h1='This is a sample'
+   form(action="/home/index", method="post")
+    |  Name: 
+    input(name='firstName')
+    br
+    |  Pass: 
+    input(name='password', style='margin: 5px 0px 5px 7px;')
+    br
+    |  Email: 
+    input(name='email', style='margin: 0px 0px 5px 3px;')
+    br
+    |
+    button#submit Submit
+   
