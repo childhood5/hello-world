@@ -3,7 +3,7 @@ extends layout
 block content
 
    h1='This is a sample'
-   form(action="/home/index", method="post")
+   form(action="/index_get", method="get")
     |  Name: 
     input(name='firstName')
     br
@@ -13,6 +13,10 @@ block content
     |  Email: 
     input(name='email', style='margin: 0px 0px 5px 3px;')
     br
-    |
+    |  Contact us:
+    span #{message}
+    br
+    input(name='contact_us', value='message', style='display: none;margin: 5px 0px 0px 0px;')
+    br
     button#submit Submit
    

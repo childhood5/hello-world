@@ -6,7 +6,7 @@ module.exports.controller = function(app){
 		employeeDao.list_data(function(err, data){
 			res.render('employee', {
 				'title' : 'Express',
-				'messge' : 'Loading ...',
+				'message' : 'Loading ...',
 				'json' : data
 			});
 		});

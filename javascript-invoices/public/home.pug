@@ -22,7 +22,7 @@ block content
               a(href='/') Invoices
     .container
      h2 List of existing invoices :
-     form(action='/api/invoices/1/items', method='get')
+     form#id_form(action='', method='get')
       table
         tr
           th customer_id
@@ -31,9 +31,11 @@ block content
         for invoice in invoices
          tr
           td
-             a(href='/api/customers/') #{invoice.customer_id}
+             a(href='/api/customers/' + invoice.customer_id) 
+              span#customer_id(name='customer_id') #{invoice.customer_id}
           td #{invoice.discount}
           td #{invoice.total}
-      button#create(type='submit', name='create', style='margin-top: 30px') New invoice
+      button#create(type='submit', style='margin-top: 30px') New invoice
     script(type='text/javascript', src='/js/lib/jquery/jquery-2.0.3.min.js')
     script(type='text/javascript', src='/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='/js/invoicesController.js')

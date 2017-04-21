@@ -158,7 +158,7 @@ app.route('/api/customers')
       res.json(customer);
     });
   });
-global.id = 11;
+
 app.route('/api/customers/:customer_id')
   .get(function(req, res) {  
     Customer.findById(req.params.customer_id).then(function(customer) {
